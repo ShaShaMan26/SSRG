@@ -20,7 +20,31 @@ public class GameSpace extends JPanel {
     }
 
     public void addNote(Note note) {
+        switch(note.id) {
+            case 0:
+                note.setParentAisle(noteAisle1);
+                noteAisle1.addNote(note);
+                break;
+            case 1:
+                note.setParentAisle(noteAisle2);
+                noteAisle2.addNote(note);
+                break;
+            case 2:
+                note.setParentAisle(noteAisle3);
+                noteAisle3.addNote(note);
+                break;
+            case 3:
+                note.setParentAisle(noteAisle4);
+                noteAisle4.addNote(note);
+                break;
+        }
+    }
 
+    public void updateNoteAisles(int timeStamp, int amountOfTicks) {
+        noteAisle1.update(timeStamp, amountOfTicks);
+        noteAisle2.update(timeStamp, amountOfTicks);
+        noteAisle3.update(timeStamp, amountOfTicks);
+        noteAisle4.update(timeStamp, amountOfTicks);
     }
 
     public void paintComponent(Graphics g) {

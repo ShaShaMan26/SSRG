@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.ArrayList;
 
 public class NoteAisle extends Component {
     Dimension displayDimensions;
@@ -8,6 +9,7 @@ public class NoteAisle extends Component {
     int xPos;
     int receiverHeight;
     boolean active = false;
+    ArrayList<Note> notes = new ArrayList<>();
 
     NoteAisle(Dimension displayDimensions, int id) {
         this.displayDimensions = displayDimensions;
@@ -25,6 +27,16 @@ public class NoteAisle extends Component {
         receiverHeight = width / 2;
 
         xPos = (displayDimensions.width / 2) - (width * 2) + (width * id);
+    }
+
+    public void update(int timeStamp, int amountOfTicks) {
+        for (Note note : notes){
+            note.move(timeStamp, amountOfTicks);
+        }
+    }
+
+    public void addNote(Note note) {
+        notes.add(note);
     }
 
     public void setActive(boolean active) {
@@ -53,5 +65,10 @@ public class NoteAisle extends Component {
 
         g.setColor(Color.cyan);
         g.fillRect(innerXPos, innerYPos, width - (borderNum * 2), receiverHeight - (borderNum * 2));
+
+        // notes
+        for (Note note : notes) {
+            note.paint(g);
+        }
     }
 }
