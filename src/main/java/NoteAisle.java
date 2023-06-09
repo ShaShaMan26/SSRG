@@ -33,6 +33,45 @@ public class NoteAisle extends Component {
         for (Note note : notes){
             note.move(timeStamp, amountOfTicks);
         }
+        for (Note note : notes) {
+            if (note.yPos > height
+                    || note.yPos < -receiverHeight
+                    || note.collected) {
+                note.setDisplayed(false);
+            } else {
+                note.setDisplayed(true);
+            }
+        }
+    }
+
+    public int checkForNoteReception() {
+        for (Note note : notes) {
+            if (note.displayed
+                    && note.yPos >= height - (receiverHeight * 2)
+                    && note.yPos <= height
+                    && active) {
+                note.setCollected(true);
+
+                if (note.yPos >= height - (receiverHeight * .75)) {
+                    return 5;
+                } else if (note.yPos >= height - (receiverHeight * .5)) {
+                    return 10;
+                } else if (note.yPos >= height - (receiverHeight * .25)) {
+                    return 15;
+                } else if (note.yPos == height - receiverHeight) {
+                    return 20;
+                } else if (note.yPos >= height - (receiverHeight * 1.25)) {
+                    return 15;
+                } else if (note.yPos >= height - (receiverHeight * 1.5)) {
+                    return 10;
+                } else if (note.yPos >= height - (receiverHeight * 1.75)) {
+                    return 5;
+                } else {
+                    return 1;
+                }
+            }
+        }
+        return 0;
     }
 
     public void addNote(Note note) {

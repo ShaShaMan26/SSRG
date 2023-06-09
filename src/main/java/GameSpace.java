@@ -47,6 +47,15 @@ public class GameSpace extends JPanel {
         noteAisle4.update(timeStamp, amountOfTicks);
     }
 
+    public int checkNoteAisleReceptions() {
+        int num = 0;
+        num += noteAisle1.checkForNoteReception();
+        num += noteAisle2.checkForNoteReception();
+        num += noteAisle3.checkForNoteReception();
+        num += noteAisle4.checkForNoteReception();
+        return num;
+    }
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 

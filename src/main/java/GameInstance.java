@@ -8,19 +8,20 @@ public class GameInstance {
     private final Dimension DISPLAY_DIMENSIONS = Toolkit.getDefaultToolkit().getScreenSize();
     GameWindow gameWindow = new GameWindow(DISPLAY_DIMENSIONS);
     GameSpace gameSpace = new GameSpace(DISPLAY_DIMENSIONS);
+    ScoreDisplay scoreDisplay = new ScoreDisplay(DISPLAY_DIMENSIONS);
     Song song;
     int timeStamp;
+    int score = 0;
 
 
-    GameInstance(Song song) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+    GameInstance(Song song) {
         this.song = song;
 
         populateNotes();
 
+        gameSpace.add(scoreDisplay);
         gameWindow.add(gameSpace);
         gameWindow.addKeyListener(gameSpace.noteReceiverController);
-
-        this.song.startMusic();
     }
 
     public void populateNotes() {
@@ -30,7 +31,12 @@ public class GameInstance {
         }
     }
 
-    public void run() {
+    public void checkCollisions() {
+        score += gameSpace.checkNoteAisleReceptions();
+    }
+
+    public void run() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        song.startMusic();
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
         double ns = 1000000000 / amountOfTicks;
@@ -43,6 +49,8 @@ public class GameInstance {
                 gameWindow.repaint();
                 timeStamp += song.bpm / amountOfTicks;
                 gameSpace.updateNoteAisles(timeStamp, (int) amountOfTicks);
+                checkCollisions();
+                scoreDisplay.setScore(score);
                 delta--;
             }
         }
