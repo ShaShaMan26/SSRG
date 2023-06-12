@@ -14,7 +14,7 @@ public class Song extends Component {
     JSONArray noteData;
     String name;
     public long length;
-    long bpm;
+    public long bpm;
     File track;
     File icon;
 

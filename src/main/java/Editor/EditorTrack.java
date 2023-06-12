@@ -13,6 +13,7 @@ public class EditorTrack extends Component {
     int height;
     int nodeHeight;
     int nodeWidth;
+    int totalNumOfNodes;
     Song song;
     ArrayList<EditorNode> editorNodes = new ArrayList<>();
     ArrayList<EditorNode> displayedEditorNodes = new ArrayList<>();
@@ -23,12 +24,13 @@ public class EditorTrack extends Component {
         width = displayDimensions.width;
         height = displayDimensions.height / 2;
 
-        yPos = (int) ((displayDimensions.height / 2) - (height / 1.75));
+        yPos = (int) (height - (height / 1.75));
 
         nodeHeight = height / 4;
         nodeWidth = nodeHeight / 2;
+        totalNumOfNodes = (int) (song.length * (song.bpm / 60));
 
-        for (int timeStamp = 0; timeStamp < song.length; timeStamp++) {
+        for (int timeStamp = 0; timeStamp < totalNumOfNodes; timeStamp++) {
             for (int id = 0; id < 4; id++) {
                 editorNodes.add(new EditorNode(id, timeStamp, yPos, nodeWidth, nodeHeight));
             }
@@ -49,9 +51,10 @@ public class EditorTrack extends Component {
 
     public void updateDisplayedNodes() {
         displayedEditorNodes.clear();
-        for (int i = globalTimeStamp; i < (((width / nodeWidth) + globalTimeStamp) * 4) + 4; i++) {
-            displayedEditorNodes.add(editorNodes.get(i));
+        for (int i = 0; i < ((width / nodeWidth) * 4) + 4; i++) {
+            displayedEditorNodes.add(editorNodes.get(i+(globalTimeStamp * 4)));
         }
+        System.out.println(displayedEditorNodes.size() / 4);
     }
 
     public void moveBackward() {
@@ -62,7 +65,7 @@ public class EditorTrack extends Component {
     }
 
     public void moveForward() {
-        if (globalTimeStamp + displayedEditorNodes.size() < song.length) {
+        if (globalTimeStamp + (displayedEditorNodes.size() / 4) < totalNumOfNodes) {
             globalTimeStamp++;
         }
         updateNodes(globalTimeStamp);
@@ -80,7 +83,6 @@ public class EditorTrack extends Component {
         for (int i = 0; i <= height / nodeHeight; i++) {
             g.drawLine(0, yPos + (nodeHeight * i), width, yPos + (nodeHeight * i));
         }
-
         for (int i = 0; i <= displayedEditorNodes.size(); i++) {
             g.drawLine(nodeWidth * i, yPos, nodeWidth * i, yPos + height);
         }
@@ -88,6 +90,23 @@ public class EditorTrack extends Component {
         // nodes
         for (EditorNode editorNode : displayedEditorNodes) {
             editorNode.paint(g);
+        }
+
+        // timeline
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial", Font.PLAIN, height / 20));
+        int scale = ((int) song.bpm / 60);
+
+        for (int i = 0; i <= displayedEditorNodes.size() / scale; i++) {
+            String timeStampString = String.valueOf(i + Math.ceilDiv(globalTimeStamp, scale));
+
+            int xPos = (nodeWidth * scale) * i;
+
+            if (globalTimeStamp % 2 != 0) {
+                xPos += nodeWidth;
+            }
+
+            g.drawString(timeStampString, xPos, yPos+(nodeHeight*4) + (height / 20));
         }
     }
 }
