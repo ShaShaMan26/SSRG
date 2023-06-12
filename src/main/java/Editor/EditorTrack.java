@@ -13,9 +13,9 @@ public class EditorTrack extends Component {
     int height;
     int nodeHeight;
     int nodeWidth;
-    int numOfDisplayedNodes;
     Song song;
     ArrayList<EditorNode> editorNodes = new ArrayList<>();
+    ArrayList<EditorNode> displayedEditorNodes = new ArrayList<>();
 
     EditorTrack(Dimension displayDimensions, Song song) {
         this.song = song;
@@ -28,13 +28,13 @@ public class EditorTrack extends Component {
         nodeHeight = height / 4;
         nodeWidth = nodeHeight / 2;
 
-        numOfDisplayedNodes = width / nodeWidth;
-
         for (int timeStamp = 0; timeStamp < song.length; timeStamp++) {
             for (int id = 0; id < 4; id++) {
                 editorNodes.add(new EditorNode(id, timeStamp, yPos, nodeWidth, nodeHeight));
             }
         }
+
+        updateDisplayedNodes();
     }
 
     public void updateNodes(int globalTimeStamp) {
@@ -42,6 +42,15 @@ public class EditorTrack extends Component {
 
         for (EditorNode node : editorNodes) {
             node.updateXPos(globalTimeStamp);
+        }
+
+        updateDisplayedNodes();
+    }
+
+    public void updateDisplayedNodes() {
+        displayedEditorNodes.clear();
+        for (int i = globalTimeStamp; i < (((width / nodeWidth) + globalTimeStamp) * 4) + 4; i++) {
+            displayedEditorNodes.add(editorNodes.get(i));
         }
     }
 
@@ -53,7 +62,7 @@ public class EditorTrack extends Component {
     }
 
     public void moveForward() {
-        if (globalTimeStamp + numOfDisplayedNodes < song.length) {
+        if (globalTimeStamp + displayedEditorNodes.size() < song.length) {
             globalTimeStamp++;
         }
         updateNodes(globalTimeStamp);
@@ -72,17 +81,13 @@ public class EditorTrack extends Component {
             g.drawLine(0, yPos + (nodeHeight * i), width, yPos + (nodeHeight * i));
         }
 
-        for (int i = 0; i <= numOfDisplayedNodes; i++) {
+        for (int i = 0; i <= displayedEditorNodes.size(); i++) {
             g.drawLine(nodeWidth * i, yPos, nodeWidth * i, yPos + height);
         }
 
         // nodes
-        for (int i = 0; i < editorNodes.size(); i++) {
-            EditorNode currentEditorNode = editorNodes.get(i);
-
-            if (currentEditorNode.added) {
-                currentEditorNode.paint(g);
-            }
+        for (EditorNode editorNode : displayedEditorNodes) {
+            editorNode.paint(g);
         }
     }
 }

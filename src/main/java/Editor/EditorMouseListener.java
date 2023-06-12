@@ -19,7 +19,7 @@ public class EditorMouseListener extends Component implements MouseListener {
     public void mousePressed(MouseEvent e) {
         Point mouseClickPos = MouseInfo.getPointerInfo().getLocation();
 
-        for (EditorNode editorNode : editorSpace.editorTrack.editorNodes) {
+        for (EditorNode editorNode : editorSpace.editorTrack.displayedEditorNodes) {
             editorNode.checkForClick(mouseClickPos.x, mouseClickPos.y);
         }
     }
