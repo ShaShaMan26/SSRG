@@ -1,3 +1,5 @@
+package Game;
+
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -11,12 +13,12 @@ public class Song extends Component {
     JSONObject songData;
     JSONArray noteData;
     String name;
-    long length;
+    public long length;
     long bpm;
     File track;
     File icon;
 
-    Song(Object songDataFile) {
+    public Song(Object songDataFile) {
         JSONObject JSONData = (JSONObject) songDataFile;
 
         this.songData = (JSONObject) JSONData.get("SongData");

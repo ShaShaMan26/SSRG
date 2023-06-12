@@ -1,8 +1,10 @@
+package Game;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class GameWindow extends JFrame {
-    GameWindow(Dimension displayDimensions) {
+    public GameWindow(Dimension displayDimensions) {
         this.setTitle("Rhythm Game");
         this.setSize(displayDimensions);
         this.setLayout(null);
