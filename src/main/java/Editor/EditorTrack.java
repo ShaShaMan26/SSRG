@@ -54,7 +54,6 @@ public class EditorTrack extends Component {
         for (int i = 0; i < ((width / nodeWidth) * 4) + 4; i++) {
             displayedEditorNodes.add(editorNodes.get(i+(globalTimeStamp * 4)));
         }
-        System.out.println(displayedEditorNodes.size() / 4);
     }
 
     public void moveBackward() {

@@ -24,11 +24,9 @@ public class EditorNode extends Component {
         xPos = width * (timeStamp - globalTimeStamp);
     }
 
-    public void checkForClick(int xPos, int yPos) {
-        if (this.xPos <= xPos && xPos <= this.xPos + width
-                && this.yPos <= yPos && yPos <= this.yPos + height) {
-            toggleAdded();
-        }
+    public boolean checkForClick(int xPos, int yPos) {
+        return this.xPos <= xPos && xPos <= this.xPos + width
+                && this.yPos <= yPos && yPos <= this.yPos + height;
     }
 
     public void toggleAdded() {

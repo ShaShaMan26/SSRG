@@ -37,7 +37,7 @@ public class GameInstance {
         score += gameSpace.checkNoteAisleReceptions();
     }
 
-    public void run() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+    public void run() {
         song.startMusic();
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;

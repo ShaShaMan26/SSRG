@@ -1,38 +1,26 @@
 package Editor;
 
 import Game.*;
-
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class EditorInstance {
     private final Dimension DISPLAY_DIMENSIONS = Toolkit.getDefaultToolkit().getScreenSize();
     GameWindow gameWindow = new GameWindow(DISPLAY_DIMENSIONS);
     EditorSpace editorSpace;
     Song song;
-    int timeStamp;
+    int playbackTimestamp = 0;
 
     EditorInstance(Song song) {
         editorSpace = new EditorSpace(DISPLAY_DIMENSIONS, song);
         this.song = song;
 
-        populateNotes();
-
         gameWindow.add(editorSpace);
-        gameWindow.addMouseListener(new EditorMouseListener(editorSpace));
+        gameWindow.addMouseListener(new EditorMouseListener(this));
+
+        gameWindow.addKeyListener(new EditorActionListener(this));
     }
 
-    public void populateNotes() {
-        ArrayList<Note> notes = song.getNotes();
-        for (Note note : notes) {
-            //editorSpace.addNote(note);
-        }
-    }
-
-    public void run() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+    public void run() {
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
         double ns = 1000000000 / amountOfTicks;
@@ -43,6 +31,11 @@ public class EditorInstance {
             lastTime = now;
             if (delta >= 1) {
                 gameWindow.repaint();
+                editorSpace.editorNeedle.setPlaybackTimestamp((int)(song.audioClip.getMicrosecondPosition() / (1000000 / (song.bpm / 60))));
+                if (song.playing && editorSpace.editorNeedle.isOutOfBounds()) {
+                    editorSpace.editorTrack.globalTimeStamp = editorSpace.editorNeedle.playbackTimestamp;
+                    editorSpace.editorTrack.updateNodes(editorSpace.editorTrack.globalTimeStamp);
+                }
                 delta--;
             }
         }

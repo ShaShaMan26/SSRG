@@ -1,14 +1,15 @@
 package Editor;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class EditorMouseListener extends Component implements MouseListener {
-    EditorSpace editorSpace;
+    EditorInstance editorInstance;
 
-    EditorMouseListener(EditorSpace editorSpace) {
-        this.editorSpace = editorSpace;
+    EditorMouseListener(EditorInstance editorInstance) {
+        this.editorInstance = editorInstance;
     }
 
     @Override
@@ -19,8 +20,14 @@ public class EditorMouseListener extends Component implements MouseListener {
     public void mousePressed(MouseEvent e) {
         Point mouseClickPos = MouseInfo.getPointerInfo().getLocation();
 
-        for (EditorNode editorNode : editorSpace.editorTrack.displayedEditorNodes) {
-            editorNode.checkForClick(mouseClickPos.x, mouseClickPos.y);
+        for (EditorNode editorNode : editorInstance.editorSpace.editorTrack.displayedEditorNodes) {
+            if (editorNode.checkForClick(mouseClickPos.x, mouseClickPos.y)) {
+                if (SwingUtilities.isLeftMouseButton(e)) {
+                    editorNode.toggleAdded();
+                } else if (SwingUtilities.isRightMouseButton(e)) {
+                    editorInstance.song.setMusicPos(editorNode.timeStamp / 2);
+                }
+            }
         }
     }
 

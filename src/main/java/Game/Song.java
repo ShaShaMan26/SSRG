@@ -17,8 +17,10 @@ public class Song extends Component {
     public long bpm;
     File track;
     File icon;
+    public Clip audioClip;
+    public boolean playing = false;
 
-    public Song(Object songDataFile) {
+    public Song(Object songDataFile) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         JSONObject JSONData = (JSONObject) songDataFile;
 
         this.songData = (JSONObject) JSONData.get("SongData");
@@ -29,6 +31,11 @@ public class Song extends Component {
         this.bpm = (long) songData.get("bpm");
         this.track = new File((String) songData.get("trackName"));
         //this.icon = new File();
+
+
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(track);
+        audioClip = AudioSystem.getClip();
+        audioClip.open(audioStream);
     }
 
     public ArrayList<Note> getNotes() {
@@ -41,11 +48,21 @@ public class Song extends Component {
         return notes;
     }
 
-    public void startMusic() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        AudioInputStream audioStream = AudioSystem.getAudioInputStream(track);
-        Clip clip = AudioSystem.getClip();
-        clip.open(audioStream);
+    public void startMusic() {
+        audioClip.start();
+        playing = true;
+    }
 
-        clip.start();
+    public void stopMusic() {
+        audioClip.stop();
+        playing = false;
+    }
+
+    public void resetMusic() {
+        audioClip.setMicrosecondPosition(0);
+    }
+
+    public void setMusicPos(int timeStamp) {
+        audioClip.setMicrosecondPosition(timeStamp * 1000000L);
     }
 }

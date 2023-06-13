@@ -25,6 +25,17 @@ public class EditorActionListener implements KeyListener {
             case 39:
                 editorInstance.editorSpace.editorTrack.moveForward();
                 break;
+            case 32:
+                if (editorInstance.song.playing) {
+                    editorInstance.song.stopMusic();
+                } else {
+                    editorInstance.song.startMusic();
+                }
+                break;
+            case 82:
+                editorInstance.song.resetMusic();
+                editorInstance.editorSpace.editorNeedle.setPlaybackTimestamp(0);
+                break;
         }
     }
 

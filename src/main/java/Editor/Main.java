@@ -12,7 +12,6 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws IOException, ParseException, UnsupportedAudioFileException, LineUnavailableException {
         EditorInstance editorInstance = new EditorInstance(new Song(new JSONParser().parse(new FileReader("C:\\Users\\shash\\IdeaProjects\\RhythmGame\\src\\main\\java\\Songs\\Test_Song\\songData.json"))));
-        editorInstance.gameWindow.addKeyListener(new EditorActionListener(editorInstance));
         editorInstance.run();
     }
 }
