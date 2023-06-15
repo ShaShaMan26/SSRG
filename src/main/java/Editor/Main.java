@@ -1,17 +1,14 @@
 package Editor;
-
-import Game.Song;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.FileReader;
+import java.io.File;
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException, ParseException, UnsupportedAudioFileException, LineUnavailableException {
-        EditorInstance editorInstance = new EditorInstance(new Song(new JSONParser().parse(new FileReader("C:\\Users\\shash\\IdeaProjects\\RhythmGame\\src\\main\\java\\Songs\\Test_Song\\songData.json"))));
+    public static void main(String[] args) throws UnsupportedAudioFileException, LineUnavailableException, IOException, ParseException {
+        EditorInstance editorInstance = new EditorInstance(new File("C:\\Users\\shash\\IdeaProjects\\RhythmGame\\src\\main\\java\\Songs\\Test_Song\\songData.json"));
         editorInstance.run();
     }
 }

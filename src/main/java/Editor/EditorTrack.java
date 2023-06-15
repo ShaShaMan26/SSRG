@@ -1,5 +1,6 @@
 package Editor;
 
+import Game.Note;
 import Game.Song;
 import org.w3c.dom.Node;
 
@@ -36,7 +37,21 @@ public class EditorTrack extends Component {
             }
         }
 
+        populateNodes();
+
         updateDisplayedNodes();
+    }
+
+
+    public void populateNodes() {
+        ArrayList<Note> notes = song.getNotes();
+        for (Note note : notes) {
+            for (EditorNode node : editorNodes) {
+                if (note.id == node.id && note.timeStamp == node.timeStamp) {
+                    node.toggleAdded();
+                }
+            }
+        }
     }
 
     public void updateNodes(int globalTimeStamp) {

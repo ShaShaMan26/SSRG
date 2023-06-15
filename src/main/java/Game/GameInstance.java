@@ -1,8 +1,14 @@
 package Game;
 
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -12,12 +18,15 @@ public class GameInstance {
     GameSpace gameSpace = new GameSpace(DISPLAY_DIMENSIONS);
     ScoreDisplay scoreDisplay = new ScoreDisplay(DISPLAY_DIMENSIONS);
     Song song;
+    File levelFile;
     int timeStamp;
     int score = 0;
 
 
-    GameInstance(Song song) {
-        this.song = song;
+    GameInstance(File levelFile) throws IOException, ParseException, UnsupportedAudioFileException, LineUnavailableException {
+        this.levelFile = levelFile;
+
+        this.song = new Song(new JSONParser().parse(new FileReader(levelFile)));
 
         populateNotes();
 

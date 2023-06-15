@@ -3,14 +3,14 @@ package Game;
 import java.awt.*;
 
 public class Note extends Component {
-    int id;
-    int timeStamp;
+    public int id;
+    public int timeStamp;
     int yPos;
     NoteAisle parentAisle;
     boolean displayed = true;
     boolean collected = false;
 
-    Note(int id, int timeStamp) {
+    public Note(int id, int timeStamp) {
         this.id = id;
         this.timeStamp = timeStamp;
     }

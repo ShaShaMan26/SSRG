@@ -10,8 +10,8 @@ import org.json.simple.*;
 import javax.sound.sampled.*;
 
 public class Song extends Component {
-    JSONObject songData;
-    JSONArray noteData;
+    public JSONObject songData;
+    public JSONArray noteData;
     String name;
     public long length;
     public long bpm;

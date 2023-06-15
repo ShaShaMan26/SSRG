@@ -9,6 +9,6 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException, ParseException, UnsupportedAudioFileException, LineUnavailableException {
-        new GameInstance(new Song(new JSONParser().parse(new FileReader("C:\\Users\\shash\\IdeaProjects\\RhythmGame\\src\\main\\java\\Songs\\Test_Song\\songData.json")))).run();
+        new GameInstance(new File("C:\\Users\\shash\\IdeaProjects\\RhythmGame\\src\\main\\java\\Songs\\Test_Song\\songData.json")).run();
     }
 }

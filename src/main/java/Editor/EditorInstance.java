@@ -1,23 +1,56 @@
 package Editor;
 
 import Game.*;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
+import java.io.*;
 
 public class EditorInstance {
     private final Dimension DISPLAY_DIMENSIONS = Toolkit.getDefaultToolkit().getScreenSize();
     GameWindow gameWindow = new GameWindow(DISPLAY_DIMENSIONS);
     EditorSpace editorSpace;
     Song song;
-    int playbackTimestamp = 0;
+    File levelFile;
 
-    EditorInstance(Song song) {
+    EditorInstance(File levelFile) throws IOException, ParseException, UnsupportedAudioFileException, LineUnavailableException {
+        this.levelFile = levelFile;
+        this.song = new Song(new JSONParser().parse(new FileReader(levelFile)));
         editorSpace = new EditorSpace(DISPLAY_DIMENSIONS, song);
-        this.song = song;
 
         gameWindow.add(editorSpace);
         gameWindow.addMouseListener(new EditorMouseListener(this));
 
         gameWindow.addKeyListener(new EditorActionListener(this));
+    }
+
+    public void save() throws IOException {
+        JSONArray noteArray = new JSONArray();
+        for (EditorNode node : editorSpace.editorTrack.editorNodes) {
+            if (node.added) {
+                JSONObject note = new JSONObject();
+                note.put("id", node.id);
+                note.put("timeStamp", node.timeStamp);
+                noteArray.add(note);
+            }
+        }
+
+        FileWriter fileWriter = new FileWriter(levelFile);
+        fileWriter.write("""
+                {
+                "SongData":""");
+        fileWriter.write(song.songData.toJSONString());
+        fileWriter.write("""
+                ,
+                "NoteData":""");
+        fileWriter.write(noteArray.toJSONString());
+        fileWriter.write("\n}");
+        fileWriter.close();
     }
 
     public void run() {
