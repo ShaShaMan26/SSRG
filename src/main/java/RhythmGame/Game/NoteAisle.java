@@ -10,6 +10,7 @@ public class NoteAisle extends Component {
     int id;
     int xPos;
     int receiverHeight;
+    int receptionScore;
     boolean active = false;
     boolean received = false;
     ArrayList<Note> notes = new ArrayList<>();
@@ -53,24 +54,33 @@ public class NoteAisle extends Component {
                     && note.yPos >= height - (receiverHeight * 2)
                     && note.yPos <= height
                     && active && !received) {
+                receptionScore = 0;
                 note.setCollected(true);
                 received = true;
 
                 if (note.yPos >= height - (receiverHeight * .75)) {
+                    receptionScore = 5;
                     return 5;
                 } else if (note.yPos >= height - (receiverHeight * .5)) {
+                    receptionScore = 10;
                     return 10;
                 } else if (note.yPos >= height - (receiverHeight * .25)) {
+                    receptionScore = 15;
                     return 15;
                 } else if (note.yPos == height - receiverHeight) {
+                    receptionScore = 20;
                     return 20;
                 } else if (note.yPos >= height - (receiverHeight * 1.25)) {
+                    receptionScore = 15;
                     return 15;
                 } else if (note.yPos >= height - (receiverHeight * 1.5)) {
+                    receptionScore = 10;
                     return 10;
                 } else if (note.yPos >= height - (receiverHeight * 1.75)) {
+                    receptionScore = 5;
                     return 5;
                 } else {
+                    receptionScore = 1;
                     return 1;
                 }
             }
@@ -93,14 +103,14 @@ public class NoteAisle extends Component {
         super.paint(g);
 
         // aisle
-        g.setColor(Color.DARK_GRAY);
+        g.setColor(new Color(96, 85, 96));
         g.fillRect(xPos, 0, width, height);
 
         // receiver
         if (active) {
-            g.setColor(Color.GREEN);
+            g.setColor(new Color(224, 188, 129));
         } else {
-            g.setColor(Color.BLUE);
+            g.setColor(new Color(150, 68, 218));
         }
         g.fillRect(xPos, height - receiverHeight, width, receiverHeight);
 
@@ -109,8 +119,24 @@ public class NoteAisle extends Component {
         int innerXPos = xPos + borderNum;
         int innerYPos = (height - receiverHeight) + borderNum;
 
-        g.setColor(Color.cyan);
+        g.setColor(new Color(255, 176, 244));
         g.fillRect(innerXPos, innerYPos, width - (borderNum * 2), receiverHeight - (borderNum * 2));
+
+        // receptionScore
+        if (receptionScore > 15) {
+            g.setColor(Color.WHITE);
+        } else if (receptionScore > 10) {
+            g.setColor(Color.ORANGE);
+        } else if (receptionScore > 5) {
+            g.setColor(Color.YELLOW);
+        } else if (receptionScore > 0) {
+            g.setColor(Color.DARK_GRAY);
+        } else {
+            g.setColor(Color.BLACK);
+        }
+
+        g.setFont(new Font("Arial", Font.PLAIN, height / 26));
+        g.drawString("+" + receptionScore, innerXPos + (int)(receiverHeight / 2.75), innerYPos + (int)(receiverHeight / 1.75));
 
         // notes
         for (Note note : notes) {

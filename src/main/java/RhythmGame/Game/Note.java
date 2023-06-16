@@ -35,7 +35,7 @@ public class Note extends Component {
         if (displayed) {
             super.paint(g);
 
-            g.setColor(Color.BLUE);
+            g.setColor(new Color(0, 42, 176));
             g.fillRect(parentAisle.xPos, yPos, parentAisle.width, parentAisle.receiverHeight);
 
             double borderScale = .125;
@@ -43,7 +43,7 @@ public class Note extends Component {
             int innerXPos = parentAisle.xPos + borderNum;
             int innerYPos = yPos + borderNum;
 
-            g.setColor(Color.ORANGE);
+            g.setColor(new Color(16, 183, 183));
             g.fillRect(innerXPos, innerYPos, parentAisle.width - (borderNum * 2), parentAisle.receiverHeight - (borderNum * 2));
         }
     }
