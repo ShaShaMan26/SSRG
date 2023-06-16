@@ -32,7 +32,7 @@ public class Song extends Component {
 
         this.name = (String) songData.get("name");
         this.length = (long) songData.get("length");
-        this.bpm = (long) songData.get("bpm");
+        this.bpm = 4 * (long) songData.get("bpm");
         this.track = new File(levelFile.getParent() + "\\" +songData.get("trackName"));
         //this.icon = new File();
 

@@ -69,6 +69,10 @@ public class GameInstance {
                     song.startMusic();
                 }
 
+                if (song.audioClip.getMicrosecondPosition() >= song.length * 1000000) {
+                    active = false;
+                }
+
                 gameSpace.updateNoteAisles(timeStamp, (int) amountOfTicks);
                 gameWindow.repaint();
                 timeStamp += song.bpm / amountOfTicks;
