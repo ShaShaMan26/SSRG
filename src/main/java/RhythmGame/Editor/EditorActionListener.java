@@ -21,9 +21,11 @@ public class EditorActionListener implements KeyListener {
                 editorInstance.active = false;
                 break;
             case 37:
+            case 65:
                 editorInstance.editorSpace.editorTrack.moveBackward();
                 break;
             case 39:
+            case 68:
                 editorInstance.editorSpace.editorTrack.moveForward();
                 break;
             case 32:
@@ -33,11 +35,19 @@ public class EditorActionListener implements KeyListener {
                     editorInstance.song.startMusic();
                 }
                 break;
+            case 87:
+            case 38:
+                editorInstance.editorSpace.editorTrack.increaseScrollSpeed();
+                break;
+            case 83:
+            case 40:
+                editorInstance.editorSpace.editorTrack.decreaseScrollSpeed();
+                break;
             case 82:
                 editorInstance.song.resetMusic();
                 editorInstance.editorSpace.editorNeedle.setPlaybackTimestamp(0);
                 break;
-            case 83:
+            case 49:
                 try {
                     editorInstance.save();
                 } catch (IOException ex) {

@@ -13,6 +13,7 @@ public class EditorTrack extends Component {
     int nodeHeight;
     int nodeWidth;
     int totalNumOfNodes;
+    int scrollSpeed = 1;
     Song song;
     ArrayList<EditorNode> editorNodes = new ArrayList<>();
     ArrayList<EditorNode> displayedEditorNodes = new ArrayList<>();
@@ -69,16 +70,35 @@ public class EditorTrack extends Component {
         }
     }
 
+    public void increaseScrollSpeed() {
+        if (scrollSpeed < 16) {
+            scrollSpeed *= 2;
+        }
+    }
+
+    public void decreaseScrollSpeed() {
+        scrollSpeed /= 2;
+        if (scrollSpeed < 2) {
+            scrollSpeed = 1;
+        }
+    }
+
     public void moveBackward() {
         if (globalTimeStamp > 0) {
-            globalTimeStamp--;
+            globalTimeStamp -= scrollSpeed;
+            if (globalTimeStamp < 0) {
+                globalTimeStamp = 0;
+            }
         }
         updateNodes(globalTimeStamp);
     }
 
     public void moveForward() {
         if (globalTimeStamp + (displayedEditorNodes.size() / 4) < totalNumOfNodes) {
-            globalTimeStamp++;
+            globalTimeStamp += scrollSpeed;
+            if (globalTimeStamp > totalNumOfNodes - (displayedEditorNodes.size() / 4)) {
+                globalTimeStamp = totalNumOfNodes - (displayedEditorNodes.size() / 4);
+            }
         }
         updateNodes(globalTimeStamp);
     }
@@ -120,8 +140,14 @@ public class EditorTrack extends Component {
             editorNode.paint(g);
         }
 
-        // timeline
+        // scrollSpeed
         g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial", Font.PLAIN, height / 18));
+
+        g.drawString(scrollSpeed + "x", 0, yPos - (height / 40));
+
+
+        // timeline
         g.setFont(new Font("Arial", Font.PLAIN, height / 25));
         int scale = ((int) song.bpm / 60);
 
