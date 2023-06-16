@@ -11,6 +11,6 @@ public class Main {
     public static void main(String[] args) throws UnsupportedAudioFileException, LineUnavailableException, IOException, ParseException {
         new File(System.getenv("APPDATA")+"\\RhythmGame").mkdir();
         new File(System.getenv("APPDATA")+"\\RhythmGame\\songs").mkdir();
-        new Instance(new File(System.getenv("APPDATA")+"\\RhythmGame\\songs\\Test_Song\\songData.json")).run();
+        new Instance(new File(System.getenv("APPDATA")+"\\RhythmGame\\songs\\Wii_Shop_Theme\\songData.json")).run();
     }
 }

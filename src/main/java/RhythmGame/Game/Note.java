@@ -28,7 +28,7 @@ public class Note extends Component {
     }
 
     public void move(int globalTimeStamp, int amountOfTicks) {
-        yPos = parentAisle.height - ((timeStamp*amountOfTicks) - globalTimeStamp);
+        yPos = (parentAisle.height - parentAisle.receiverHeight) - ((timeStamp*amountOfTicks) - globalTimeStamp);
     }
 
     public void paint(Graphics g) {

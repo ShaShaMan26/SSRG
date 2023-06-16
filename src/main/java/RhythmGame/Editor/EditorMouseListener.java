@@ -25,7 +25,7 @@ public class EditorMouseListener extends Component implements MouseListener {
                 if (SwingUtilities.isLeftMouseButton(e)) {
                     editorNode.toggleAdded();
                 } else if (SwingUtilities.isRightMouseButton(e)) {
-                    editorInstance.song.setMusicPos(editorNode.timeStamp / 2);
+                    editorInstance.song.setMusicPos(editorNode.timeStamp / (int) (editorInstance.song.bpm / 60));
                 }
             }
         }

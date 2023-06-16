@@ -36,6 +36,7 @@ public class GameInstance {
         gameSpace.add(scoreDisplay);
         this.gameWindow.add(gameSpace);
         this.gameWindow.addKeyListener(new NoteReceiverController(this));
+        timeStamp = -(gameSpace.noteAisle1.receiverHeight * 10);
     }
 
     public void populateNotes() {
@@ -51,6 +52,10 @@ public class GameInstance {
 
     public void run() {
         song.startMusic();
+        while (song.audioClip.getMicrosecondPosition() == 0);
+        song.stopMusic();
+        song.resetMusic();
+
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
         double ns = 1000000000 / amountOfTicks;
@@ -60,9 +65,13 @@ public class GameInstance {
             delta += (now - lastTime) / ns;
             lastTime = now;
             if (delta >= 1) {
+                if (timeStamp >= -gameSpace.noteAisle1.receiverHeight) {
+                    song.startMusic();
+                }
+
+                gameSpace.updateNoteAisles(timeStamp, (int) amountOfTicks);
                 gameWindow.repaint();
                 timeStamp += song.bpm / amountOfTicks;
-                gameSpace.updateNoteAisles(timeStamp, (int) amountOfTicks);
                 checkCollisions();
                 scoreDisplay.setScore(score);
                 delta--;

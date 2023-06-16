@@ -31,12 +31,13 @@ public class Instance {
 
     public void checkForSwitch() throws UnsupportedAudioFileException, LineUnavailableException, IOException, ParseException {
         if (wantsToSwitchToGame) {
-            gameWindow.remove(currentPanel);
             for (KeyListener keyListener : gameWindow.getKeyListeners()) {
                 gameWindow.removeKeyListener(keyListener);
             }
 
             GameInstance gameInstance = new GameInstance(levelFile, gameWindow, DISPLAY_DIMENSIONS);
+
+            gameWindow.remove(currentPanel);
             currentPanel = gameInstance.gameSpace;
 
             gameInstance.run();
@@ -44,12 +45,13 @@ public class Instance {
             wantsToSwitchToGame = false;
             wantsToSwitchToMenu = true;
         } else if (wantsToSwitchToEditor) {
-            gameWindow.remove(currentPanel);
             for (KeyListener keyListener : gameWindow.getKeyListeners()) {
                 gameWindow.removeKeyListener(keyListener);
             }
 
             EditorInstance editorInstance = new EditorInstance(levelFile, gameWindow, DISPLAY_DIMENSIONS);
+
+            gameWindow.remove(currentPanel);
             currentPanel = editorInstance.editorSpace;
 
             editorInstance.run();
@@ -57,12 +59,13 @@ public class Instance {
             wantsToSwitchToEditor = false;
             wantsToSwitchToMenu = true;
         } else if (wantsToSwitchToMenu) {
-            gameWindow.remove(currentPanel);
             for (KeyListener keyListener : gameWindow.getKeyListeners()) {
                 gameWindow.removeKeyListener(keyListener);
             }
 
             MainMenuInstance mainMenuInstance = new MainMenuInstance(gameWindow, DISPLAY_DIMENSIONS, this);
+
+            gameWindow.remove(currentPanel);
             currentPanel = mainMenuInstance.mainMenu;
         }
     }

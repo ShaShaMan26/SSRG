@@ -11,6 +11,7 @@ public class NoteAisle extends Component {
     int xPos;
     int receiverHeight;
     boolean active = false;
+    boolean received = false;
     ArrayList<Note> notes = new ArrayList<>();
 
     NoteAisle(Dimension displayDimensions, int id) {
@@ -51,8 +52,9 @@ public class NoteAisle extends Component {
             if (note.displayed
                     && note.yPos >= height - (receiverHeight * 2)
                     && note.yPos <= height
-                    && active) {
+                    && active && !received) {
                 note.setCollected(true);
+                received = true;
 
                 if (note.yPos >= height - (receiverHeight * .75)) {
                     return 5;
@@ -82,6 +84,9 @@ public class NoteAisle extends Component {
 
     public void setActive(boolean active) {
         this.active = active;
+        if (!active) {
+            received = false;
+        }
     }
 
     public void paint(Graphics g) {
