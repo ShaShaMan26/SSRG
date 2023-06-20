@@ -1,11 +1,14 @@
 package RhythmGame.Game;
 
+import RhythmGame.Editor.EditorInstance;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -21,8 +24,14 @@ public class GameInstance {
     int timeStamp;
     int score = 0;
     boolean active = true;
+    boolean isTest;
+    int startTime;
+    Dimension displayDimension;
 
-    public GameInstance(File levelFile, GameWindow gameWindow, Dimension displayDimension) throws IOException, ParseException, UnsupportedAudioFileException, LineUnavailableException {
+    public GameInstance(File levelFile, GameWindow gameWindow, Dimension displayDimension, boolean isTest, int startTime) throws IOException, ParseException, UnsupportedAudioFileException, LineUnavailableException {
+        this.displayDimension = displayDimension;
+        this.isTest = isTest;
+        this.startTime = startTime;
         this.gameWindow = gameWindow;
         gameSpace = new GameSpace(displayDimension);
         scoreDisplay = new ScoreDisplay(displayDimension);
@@ -31,7 +40,7 @@ public class GameInstance {
 
         this.song = new Song(levelFile);
 
-        populateNotes();
+        populateNotes(startTime);
 
         gameSpace.add(scoreDisplay);
         this.gameWindow.add(gameSpace);
@@ -39,8 +48,8 @@ public class GameInstance {
         timeStamp = -(gameSpace.noteAisle1.receiverHeight * 10);
     }
 
-    public void populateNotes() {
-        ArrayList<Note> notes = song.getNotes();
+    public void populateNotes(int startTime) {
+        ArrayList<Note> notes = song.getNotes(startTime);
         for (Note note : notes) {
             gameSpace.addNote(note);
         }
@@ -54,7 +63,9 @@ public class GameInstance {
         song.startMusic();
         while (song.audioClip.getMicrosecondPosition() == 0);
         song.stopMusic();
-        song.resetMusic();
+
+        int scale = ((int) song.bpm / 60);
+        song.setMusicPos(startTime / scale);
 
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
@@ -83,5 +94,18 @@ public class GameInstance {
         }
         song.stopMusic();
         song.resetMusic();
+
+        if (isTest) {
+            for (KeyListener keyListener : gameWindow.getKeyListeners()) {
+                gameWindow.removeKeyListener(keyListener);
+            }
+            for (MouseListener mouseListener : gameWindow.getMouseListeners()) {
+                gameWindow.removeMouseListener(mouseListener);
+            }
+
+            gameWindow.remove(gameSpace);
+        }
+
+        song.audioClip.close();
     }
 }

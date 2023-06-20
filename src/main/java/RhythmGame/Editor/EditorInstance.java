@@ -1,6 +1,7 @@
 package RhythmGame.Editor;
 
 import RhythmGame.Game.*;
+import RhythmGame.Instance;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -9,6 +10,8 @@ import org.json.simple.parser.ParseException;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
 import java.io.*;
 
 public class EditorInstance {
@@ -17,8 +20,11 @@ public class EditorInstance {
     Song song;
     File levelFile;
     boolean active = true;
+    boolean wantsToTest = false;
+    Dimension displayDimension;
 
     public EditorInstance(File levelFile, GameWindow gameWindow, Dimension displayDimension) throws IOException, ParseException, UnsupportedAudioFileException, LineUnavailableException {
+        this.displayDimension = displayDimension;
         this.gameWindow = gameWindow;
 
         this.levelFile = levelFile;
@@ -55,7 +61,34 @@ public class EditorInstance {
         fileWriter.close();
     }
 
-    public void run() {
+    public void checkWantsToTest() throws UnsupportedAudioFileException, LineUnavailableException, IOException, ParseException {
+        if (wantsToTest) {
+            for (KeyListener keyListener : gameWindow.getKeyListeners()) {
+                gameWindow.removeKeyListener(keyListener);
+            }
+            for (MouseListener mouseListener : gameWindow.getMouseListeners()) {
+                gameWindow.removeMouseListener(mouseListener);
+            }
+
+            GameInstance gameInstance = new GameInstance(levelFile, gameWindow, displayDimension, true, editorSpace.editorNeedle.playbackTimestamp);
+
+            editorSpace.setVisible(false);
+
+            song.playing = false;
+            song.stopMusic();
+
+            gameInstance.run();
+
+            editorSpace.setVisible(true);
+
+            this.gameWindow.addMouseListener(new EditorMouseListener(this));
+            this.gameWindow.addKeyListener(new EditorActionListener(this));
+
+            wantsToTest = false;
+        }
+    }
+
+    public void run() throws UnsupportedAudioFileException, LineUnavailableException, IOException, ParseException {
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
         double ns = 1000000000 / amountOfTicks;
@@ -65,6 +98,7 @@ public class EditorInstance {
             delta += (now - lastTime) / ns;
             lastTime = now;
             if (delta >= 1) {
+                checkWantsToTest();
                 gameWindow.repaint();
                 editorSpace.editorNeedle.setPlaybackTimestamp((int)(song.audioClip.getMicrosecondPosition() / (1000000 / (song.bpm / 60))));
                 if (song.playing && editorSpace.editorNeedle.isOutOfBounds()) {
@@ -75,5 +109,6 @@ public class EditorInstance {
             }
         }
 
+        song.audioClip.close();
     }
 }

@@ -54,6 +54,9 @@ public class EditorActionListener implements KeyListener {
                     throw new RuntimeException(ex);
                 }
                 break;
+            case 84:
+                editorInstance.wantsToTest = true;
+                break;
         }
     }
 

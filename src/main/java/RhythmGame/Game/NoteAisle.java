@@ -102,14 +102,14 @@ public class NoteAisle extends Component {
         super.paint(g);
 
         // aisle
-        g.setColor(new Color(128, 118, 169));
+        g.setColor(new Color(87, 85, 98));
         g.fillRect(xPos, 0, width, height);
 
         // receiver
         if (active) {
-            g.setColor(new Color(90, 102, 134));
+            g.setColor(new Color(168, 150, 36));
         } else {
-            g.setColor(new Color(60, 72, 101));
+            g.setColor(new Color(33, 168, 11));
         }
         g.fillRect(xPos, height - receiverHeight, width, receiverHeight);
 
@@ -118,7 +118,7 @@ public class NoteAisle extends Component {
         int innerXPos = xPos + borderNum;
         int innerYPos = (height - receiverHeight) + borderNum;
 
-        g.setColor(new Color(139, 158, 189));
+        g.setColor(new Color(147, 199, 140));
         g.fillRect(innerXPos, innerYPos, width - (borderNum * 2), receiverHeight - (borderNum * 2));
 
         // scoreParticles

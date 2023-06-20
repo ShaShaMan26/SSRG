@@ -42,11 +42,11 @@ public class Song extends Component {
         audioClip.open(audioStream);
     }
 
-    public ArrayList<Note> getNotes() {
+    public ArrayList<Note> getNotes(int startTime) {
         ArrayList<Note> notes = new ArrayList<>();
 
         noteData.iterator().forEachRemaining(currentNote -> {
-            notes.add(new Note((int) (long) ((JSONObject) currentNote).get("id"), (int) (long) ((JSONObject) currentNote).get("timeStamp")));
+            notes.add(new Note((int) (long) ((JSONObject) currentNote).get("id"), ((int) (long) ((JSONObject) currentNote).get("timeStamp") - startTime)));
         });
 
         return notes;

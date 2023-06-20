@@ -17,11 +17,7 @@ public class ScoreParticle extends Component {
         int opacityLevel;
         if (elapsedReceptionTime < 0) {
             opacityLevel = 0;
-        } else if (elapsedReceptionTime > 100) {
-            opacityLevel = 100;
-        } else {
-            opacityLevel = elapsedReceptionTime;
-        }
+        } else opacityLevel = Math.min(elapsedReceptionTime, 100);
 
         if (value > 15) {
             g.setColor(new Color(199, 153, 0, opacityLevel));

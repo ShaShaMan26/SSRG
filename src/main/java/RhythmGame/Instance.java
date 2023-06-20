@@ -12,6 +12,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -34,13 +35,17 @@ public class Instance {
             for (KeyListener keyListener : gameWindow.getKeyListeners()) {
                 gameWindow.removeKeyListener(keyListener);
             }
+            for (MouseListener mouseListener : gameWindow.getMouseListeners()) {
+                gameWindow.removeMouseListener(mouseListener);
+            }
 
-            GameInstance gameInstance = new GameInstance(levelFile, gameWindow, DISPLAY_DIMENSIONS);
+            GameInstance gameInstance = new GameInstance(levelFile, gameWindow, DISPLAY_DIMENSIONS, false, 0);
 
             gameWindow.remove(currentPanel);
-            currentPanel = gameInstance.gameSpace;
 
             gameInstance.run();
+
+            currentPanel = gameInstance.gameSpace;
 
             wantsToSwitchToGame = false;
             wantsToSwitchToMenu = true;
@@ -48,19 +53,26 @@ public class Instance {
             for (KeyListener keyListener : gameWindow.getKeyListeners()) {
                 gameWindow.removeKeyListener(keyListener);
             }
+            for (MouseListener mouseListener : gameWindow.getMouseListeners()) {
+                gameWindow.removeMouseListener(mouseListener);
+            }
 
             EditorInstance editorInstance = new EditorInstance(levelFile, gameWindow, DISPLAY_DIMENSIONS);
 
             gameWindow.remove(currentPanel);
-            currentPanel = editorInstance.editorSpace;
 
             editorInstance.run();
+
+            currentPanel = editorInstance.editorSpace;
 
             wantsToSwitchToEditor = false;
             wantsToSwitchToMenu = true;
         } else if (wantsToSwitchToMenu) {
             for (KeyListener keyListener : gameWindow.getKeyListeners()) {
                 gameWindow.removeKeyListener(keyListener);
+            }
+            for (MouseListener mouseListener : gameWindow.getMouseListeners()) {
+                gameWindow.removeMouseListener(mouseListener);
             }
 
             MainMenuInstance mainMenuInstance = new MainMenuInstance(gameWindow, DISPLAY_DIMENSIONS, this);

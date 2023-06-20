@@ -11,9 +11,11 @@ import java.io.IOException;
 
 public class MainMenuKeyListener implements KeyListener {
     Instance instance;
+    MainMenuInstance mainMenuInstance;
 
-    public MainMenuKeyListener(Instance instance) {
+    public MainMenuKeyListener(Instance instance, MainMenuInstance mainMenuInstance) {
         this.instance = instance;
+        this.mainMenuInstance = mainMenuInstance;
     }
 
     @Override

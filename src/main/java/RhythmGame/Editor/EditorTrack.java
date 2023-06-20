@@ -43,7 +43,7 @@ public class EditorTrack extends Component {
 
 
     public void populateNodes() {
-        ArrayList<Note> notes = song.getNotes();
+        ArrayList<Note> notes = song.getNotes(0);
         for (Note note : notes) {
             for (EditorNode node : editorNodes) {
                 if (note.id == node.id && note.timeStamp == node.timeStamp) {
