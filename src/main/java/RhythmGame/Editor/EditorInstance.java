@@ -35,6 +35,8 @@ public class EditorInstance {
         this.gameWindow.addMouseListener(new EditorMouseListener(this));
 
         this.gameWindow.addKeyListener(new EditorActionListener(this));
+
+        gameWindow.requestFocus();
     }
 
     public void save() throws IOException {

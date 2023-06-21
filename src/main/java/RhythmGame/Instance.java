@@ -11,22 +11,25 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 
 public class Instance {
-    private final Dimension DISPLAY_DIMENSIONS = Toolkit.getDefaultToolkit().getScreenSize();
+    public final Dimension DISPLAY_DIMENSIONS = Toolkit.getDefaultToolkit().getScreenSize();
     public GameWindow gameWindow = new GameWindow(DISPLAY_DIMENSIONS);
-    File levelFile;
-    JPanel currentPanel = new JPanel();
-    boolean wantsToSwitchToGame = false;
-    boolean wantsToSwitchToEditor = false;
-    boolean wantsToSwitchToMenu = false;
+    private final File levelFile;
+    private final Song song;
+    private JPanel currentPanel = new JPanel();
+    private boolean wantsToSwitchToGame = false;
+    private boolean wantsToSwitchToEditor = false;
+    private boolean wantsToSwitchToMenu = false;
 
-    Instance(File levelFile) {
+    Instance(File levelFile) throws UnsupportedAudioFileException, LineUnavailableException, IOException, ParseException {
         this.levelFile = levelFile;
+        this.song = new Song(levelFile);
         goToMainMenu();
     }
 
@@ -75,10 +78,12 @@ public class Instance {
                 gameWindow.removeMouseListener(mouseListener);
             }
 
-            MainMenuInstance mainMenuInstance = new MainMenuInstance(gameWindow, DISPLAY_DIMENSIONS, this);
+            MainMenuInstance mainMenuInstance = new MainMenuInstance(gameWindow, this);
 
             gameWindow.remove(currentPanel);
             currentPanel = mainMenuInstance.mainMenu;
+
+            wantsToSwitchToMenu = false;
         }
     }
 

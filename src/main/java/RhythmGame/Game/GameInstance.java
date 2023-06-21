@@ -20,7 +20,6 @@ public class GameInstance {
     public GameSpace gameSpace;
     ScoreDisplay scoreDisplay;
     Song song;
-    File levelFile;
     int timeStamp;
     int score = 0;
     boolean active = true;
@@ -36,8 +35,6 @@ public class GameInstance {
         gameSpace = new GameSpace(displayDimension);
         scoreDisplay = new ScoreDisplay(displayDimension);
 
-        this.levelFile = levelFile;
-
         this.song = new Song(levelFile);
 
         populateNotes(startTime);
@@ -46,6 +43,8 @@ public class GameInstance {
         this.gameWindow.add(gameSpace);
         this.gameWindow.addKeyListener(new NoteReceiverController(this));
         timeStamp = -(gameSpace.noteAisle1.receiverHeight * 10);
+
+        gameWindow.requestFocus();
     }
 
     public void populateNotes(int startTime) {
