@@ -46,6 +46,7 @@ public class EditorActionListener implements KeyListener {
             case 82:
                 editorInstance.song.resetMusic();
                 editorInstance.editorSpace.editorNeedle.setPlaybackTimestamp(0);
+                editorInstance.editorSpace.editorTrack.scrollSpeed = 1;
                 break;
             case 49:
                 try {

@@ -151,16 +151,17 @@ public class EditorTrack extends Component {
         g.setFont(new Font("Arial", Font.PLAIN, height / 25));
         int scale = ((int) song.bpm / 60);
 
-        for (int i = 0; i <= displayedEditorNodes.size() / scale; i++) {
-            String timeStampString = formatToTime(i + Math.ceilDiv(globalTimeStamp, scale));
+        String previousTimeStampString = "";
+        for (int i = 0; i <= displayedEditorNodes.size() / 4; i++) {
+            String timeStampString = formatToTime((i + globalTimeStamp) / scale);
 
-            int xPos = (nodeWidth * scale) * i;
+            int xPos = (nodeWidth) * i;
 
-            if (globalTimeStamp % 2 != 0) {
-                xPos += nodeWidth;
+            if (!previousTimeStampString.equals(timeStampString)) {
+                g.drawString(timeStampString, xPos, yPos+(nodeHeight*4) + (height / 25));
             }
 
-            g.drawString(timeStampString, xPos, yPos+(nodeHeight*4) + (height / 25));
+            previousTimeStampString = timeStampString;
         }
     }
 }

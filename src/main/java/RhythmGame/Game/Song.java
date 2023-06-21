@@ -11,15 +11,16 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import javax.sound.sampled.*;
+import javax.swing.*;
 
 public class Song extends Component {
     public JSONObject songData;
     public JSONArray noteData;
-    String name;
+    public String name;
     public long length;
     public long bpm;
     File track;
-    File icon;
+    public ImageIcon icon;
     public Clip audioClip;
     public boolean playing = false;
 
@@ -33,8 +34,8 @@ public class Song extends Component {
         this.name = (String) songData.get("name");
         this.length = (long) songData.get("length");
         this.bpm = 4 * (long) songData.get("bpm");
-        this.track = new File(levelFile.getParent() + "\\" +songData.get("trackName"));
-        //this.icon = new File();
+        this.track = new File(levelFile.getParent() + "\\" + songData.get("trackName"));
+        this.icon = new ImageIcon(levelFile.getParent() + "\\" + songData.get("iconName"));
 
 
         AudioInputStream audioStream = AudioSystem.getAudioInputStream(track);

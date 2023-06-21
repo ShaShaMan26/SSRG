@@ -24,17 +24,19 @@ public class MainMenu extends JPanel implements ActionListener {
         buttons.add(playLevelButton);
         buttons.add(editLevelButton);
 
-        int width = ((instance.DISPLAY_DIMENSIONS.height / 9) * 16) / 12;
+        int width = ((instance.DISPLAY_DIMENSIONS.height / 9) * 16) / 8;
         int height = width / 2;
         int xCenter = instance.DISPLAY_DIMENSIONS.width / 2 - (width / 2);
         int yCenter = instance.DISPLAY_DIMENSIONS.height / 2 - (height / 2);
 
         playLevelButton = new JButton();
+        playLevelButton.setFont(new Font("Arial", Font.PLAIN, height / 3));
         playLevelButton.setText("Play Level");
         playLevelButton.addActionListener(this);
         playLevelButton.setBounds(xCenter - (width / 2), yCenter, width, height);
         this.add(playLevelButton);
         editLevelButton = new JButton();
+        editLevelButton.setFont(new Font("Arial", Font.PLAIN, height / 3));
         editLevelButton.setText("Edit Level");
         editLevelButton.addActionListener(this);
         editLevelButton.setBounds(xCenter + (width / 2), yCenter, width, height);

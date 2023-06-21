@@ -6,6 +6,7 @@ import org.json.simple.parser.ParseException;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
@@ -19,6 +20,7 @@ public class GameInstance {
     GameWindow gameWindow;
     public GameSpace gameSpace;
     ScoreDisplay scoreDisplay;
+    JLabel songLabel;
     Song song;
     int timeStamp;
     int score = 0;
@@ -32,10 +34,24 @@ public class GameInstance {
         this.isTest = isTest;
         this.startTime = startTime;
         this.gameWindow = gameWindow;
+
+        this.song = new Song(levelFile);
+
         gameSpace = new GameSpace(displayDimension);
         scoreDisplay = new ScoreDisplay(displayDimension);
 
-        this.song = new Song(levelFile);
+        songLabel = new JLabel();
+        songLabel.setVisible(false);
+        songLabel.setFont(new Font("Monospaced", Font.BOLD, displayDimension.height / 40));
+        songLabel.setForeground(Color.WHITE);
+        songLabel.setHorizontalTextPosition(JLabel.CENTER);
+        songLabel.setVerticalTextPosition(JLabel.TOP);
+        int iconSideLength = displayDimension.height / 5;
+        songLabel.setIcon(new ImageIcon(song.icon.getImage().getScaledInstance(iconSideLength, iconSideLength, Image.SCALE_DEFAULT)));
+        songLabel.setBounds(0, 0, iconSideLength, displayDimension.height);
+        songLabel.setText("<html><p style=\"width:"+(int)(iconSideLength * 1.25)+"px\">" + song.name + "</p></html>");
+        songLabel.setVerticalAlignment(JLabel.NORTH);
+        gameSpace.add(songLabel);
 
         populateNotes(startTime);
 

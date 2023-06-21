@@ -20,15 +20,15 @@ public class ScoreParticle extends Component {
         } else opacityLevel = Math.min(elapsedReceptionTime, 255);
 
         if (value > 15) {
-            g.setColor(new Color(255, 194, 0, opacityLevel));
+            g.setColor(new Color(121, 0, 255, opacityLevel));
         } else if (value > 10) {
             g.setColor(new Color(72, 255, 0, opacityLevel));
         } else if (value > 5) {
             g.setColor(new Color(0, 196, 255, opacityLevel));
         } else if (value > 1) {
-            g.setColor(new Color(255, 0, 47, opacityLevel));
+            g.setColor(new Color(255, 234, 0, opacityLevel));
         } else {
-            g.setColor(new Color(0, 0, 0, opacityLevel));
+            g.setColor(new Color(255, 0, 47, opacityLevel));
         }
 
         g.setFont(new Font("Arial", Font.PLAIN, parentAisle.height / 26));
