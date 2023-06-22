@@ -21,6 +21,8 @@ public class MainMenu extends JPanel implements ActionListener {
     public MainMenu(Instance instance) {
         this.instance = instance;
 
+        this.setLayout(null);
+
         buttons.add(playLevelButton);
         buttons.add(editLevelButton);
 

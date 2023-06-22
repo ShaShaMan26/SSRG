@@ -20,8 +20,8 @@ public class EditorInstance {
     Song song;
     File levelFile;
     boolean active = true;
-    boolean wantsToTest = false;
-    Dimension displayDimension;
+    public boolean wantsToTest = false;
+    public Dimension displayDimension;
 
     public EditorInstance(File levelFile, GameWindow gameWindow, Dimension displayDimension) throws IOException, ParseException, UnsupportedAudioFileException, LineUnavailableException {
         this.displayDimension = displayDimension;
@@ -29,7 +29,7 @@ public class EditorInstance {
 
         this.levelFile = levelFile;
         this.song = new Song(levelFile);
-        editorSpace = new EditorSpace(displayDimension, song);
+        editorSpace = new EditorSpace(this);
 
         this.gameWindow.add(editorSpace);
         this.gameWindow.addMouseListener(new EditorMouseListener(this));
