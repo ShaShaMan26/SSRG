@@ -20,14 +20,20 @@ import java.io.IOException;
 public class Instance {
     public final Dimension DISPLAY_DIMENSIONS = Toolkit.getDefaultToolkit().getScreenSize();
     public GameWindow gameWindow = new GameWindow(DISPLAY_DIMENSIONS);
-    public final File levelFile;
-    private final Song song;
+    public File levelFile;
+    public Song song;
     private JPanel currentPanel = new JPanel();
     public boolean wantsToSwitchToGame = false;
     private boolean wantsToSwitchToEditor = false;
     public boolean wantsToSwitchToMenu = false;
 
     Instance(File levelFile) throws UnsupportedAudioFileException, LineUnavailableException, IOException, ParseException {
+        this.levelFile = levelFile;
+        this.song = new Song(levelFile);
+        goToMainMenu();
+    }
+
+    public void setLevelFile(File levelFile) throws UnsupportedAudioFileException, LineUnavailableException, IOException, ParseException {
         this.levelFile = levelFile;
         this.song = new Song(levelFile);
         goToMainMenu();

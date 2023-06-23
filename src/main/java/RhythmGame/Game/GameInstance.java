@@ -21,7 +21,6 @@ public class GameInstance {
     GameWindow gameWindow;
     public GameSpace gameSpace;
     ScoreDisplay scoreDisplay;
-    JLabel songLabel;
     Song song;
     int timeStamp;
     int score = 0;
@@ -45,7 +44,7 @@ public class GameInstance {
         gameSpace = new GameSpace(displayDimension);
         scoreDisplay = new ScoreDisplay(displayDimension);
 
-        songLabel = new JLabel();
+        JLabel songLabel = new JLabel();
         songLabel.setVisible(false);
         songLabel.setFont(new Font("Monospaced", Font.BOLD, displayDimension.height / 40));
         songLabel.setForeground(Color.WHITE);
@@ -54,7 +53,7 @@ public class GameInstance {
         int iconSideLength = displayDimension.height / 5;
         songLabel.setIcon(new ImageIcon(song.icon.getImage().getScaledInstance(iconSideLength, iconSideLength, Image.SCALE_DEFAULT)));
         songLabel.setBounds(0, 0, iconSideLength, displayDimension.height);
-        songLabel.setText("<html><p style=\"width:"+(int)(iconSideLength * 1.25)+"px\">" + song.name + "<br>" + song.author + "</p></html>");
+        songLabel.setText("<html><p style=\"width:"+(int)(iconSideLength * 1.25)+"px\">" + song.name + "<br><i>" + song.author + "</i></p></html>");
         songLabel.setVerticalAlignment(JLabel.NORTH);
         gameSpace.add(songLabel);
 
