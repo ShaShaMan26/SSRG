@@ -10,10 +10,10 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws UnsupportedAudioFileException, LineUnavailableException, IOException, ParseException {
-        new File(System.getenv("APPDATA")+"\\RhythmGame").mkdir();
-        new File(System.getenv("APPDATA")+"\\RhythmGame\\songs").mkdir();
+        new File(System.getenv("APPDATA")+"\\SSRG").mkdir();
+        new File(System.getenv("APPDATA")+"\\SSRG\\songs").mkdir();
 
-        String[] songNames = new File(System.getenv("APPDATA") + "\\RhythmGame\\songs").list();
+        String[] songNames = new File(System.getenv("APPDATA") + "\\SSRG\\songs").list();
 
         for (int i = 1; i <= songNames.length; i++) {
             System.out.println(i + ". " + songNames[i-1]);
@@ -22,6 +22,6 @@ public class Main {
         Scanner songSelectionListener = new Scanner(System.in);
         int selectedSongIndex = songSelectionListener.nextInt() - 1;
 
-        new Instance(new File(System.getenv("APPDATA")+"\\RhythmGame\\songs\\" + songNames[selectedSongIndex] + "\\songData.json")).run();
+        new Instance(new File(System.getenv("APPDATA")+"\\SSRG\\songs\\" + songNames[selectedSongIndex] + "\\songData.json")).run();
     }
 }

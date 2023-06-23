@@ -21,6 +21,7 @@ public class EditorInstance {
     File levelFile;
     boolean active = true;
     public boolean wantsToTest = false;
+    public boolean wantsToSave = false;
     public Dimension displayDimension;
 
     public EditorInstance(File levelFile, GameWindow gameWindow, Dimension displayDimension) throws IOException, ParseException, UnsupportedAudioFileException, LineUnavailableException {
@@ -40,6 +41,8 @@ public class EditorInstance {
     }
 
     public void save() throws IOException {
+        editorSpace.savingStatus = "Saving...";
+
         JSONArray noteArray = new JSONArray();
         for (EditorNode node : editorSpace.editorTrack.editorNodes) {
             if (node.added) {
@@ -61,9 +64,17 @@ public class EditorInstance {
         fileWriter.write(noteArray.toJSONString());
         fileWriter.write("\n}");
         fileWriter.close();
+
+        editorSpace.savingStatus = "Saved!";
+        gameWindow.requestFocus();
     }
 
-    public void checkWantsToTest() throws UnsupportedAudioFileException, LineUnavailableException, IOException, ParseException {
+    public void checkForRequest() throws UnsupportedAudioFileException, LineUnavailableException, IOException, ParseException {
+        if (wantsToSave) {
+            this.save();
+            wantsToSave = false;
+        }
+
         if (wantsToTest) {
             for (KeyListener keyListener : gameWindow.getKeyListeners()) {
                 gameWindow.removeKeyListener(keyListener);
@@ -100,7 +111,7 @@ public class EditorInstance {
             delta += (now - lastTime) / ns;
             lastTime = now;
             if (delta >= 1) {
-                checkWantsToTest();
+                checkForRequest();
                 gameWindow.repaint();
                 editorSpace.editorNeedle.setPlaybackTimestamp((int)(song.audioClip.getMicrosecondPosition() / (1000000 / (song.bpm / 60))));
                 if (song.playing && editorSpace.editorNeedle.isOutOfBounds()) {

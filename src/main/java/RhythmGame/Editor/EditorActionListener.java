@@ -16,6 +16,7 @@ public class EditorActionListener implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        editorInstance.editorSpace.savingStatus = "";
         switch (e.getKeyCode()) {
             case 27:
                 editorInstance.active = false;
@@ -49,11 +50,7 @@ public class EditorActionListener implements KeyListener {
                 editorInstance.editorSpace.editorTrack.scrollSpeed = 1;
                 break;
             case 49:
-                try {
-                    editorInstance.save();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+                editorInstance.wantsToSave = true;
                 break;
             case 84:
                 editorInstance.wantsToTest = true;

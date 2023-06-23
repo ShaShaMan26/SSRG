@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class EditorSpace extends JPanel implements ActionListener {
     EditorTrack editorTrack;
@@ -14,6 +15,7 @@ public class EditorSpace extends JPanel implements ActionListener {
     JButton testButton;
     JButton saveButton;
     EditorInstance editorInstance;
+    String savingStatus = "";
 
     EditorSpace(EditorInstance editorInstance) {
         this.editorInstance = editorInstance;
@@ -42,7 +44,7 @@ public class EditorSpace extends JPanel implements ActionListener {
         saveButton = new JButton();
         saveButton.setFont(new Font("Arial", Font.PLAIN, height / 3));
         saveButton.setText("Save Level");
-        saveButton.setBounds(editorInstance.displayDimension.width - width, editorTrack.yPos -  height, width, height);
+        saveButton.setBounds(editorInstance.displayDimension.width - width, editorTrack.yPos - height, width, height);
         saveButton.addActionListener(this);
         this.add(saveButton);
 
@@ -58,12 +60,20 @@ public class EditorSpace extends JPanel implements ActionListener {
                 component.paint(g);
             }
         }
+
+        int width = ((editorInstance.displayDimension.height / 9) * 16) / 10;
+        int height = width / 2;
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial", Font.PLAIN, (int)(height / 2.5)));
+        g.drawString(savingStatus, editorInstance.displayDimension.width - width, editorTrack.yPos - (int)(height * 1.05));
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == testButton) {
             editorInstance.wantsToTest = true;
+        } else if (e.getSource() == saveButton) {
+            editorInstance.wantsToSave = true;
         }
     }
 }

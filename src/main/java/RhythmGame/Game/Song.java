@@ -17,6 +17,7 @@ public class Song extends Component {
     public JSONObject songData;
     public JSONArray noteData;
     public String name;
+    public String author;
     public long length;
     public long bpm;
     File track;
@@ -32,6 +33,7 @@ public class Song extends Component {
         this.noteData = (JSONArray) JSONData.get("NoteData");
 
         this.name = (String) songData.get("name");
+        this.author = (String) songData.get("author");
         this.length = (long) songData.get("length");
         this.bpm = 4 * (long) songData.get("bpm");
         this.track = new File(levelFile.getParent() + "\\" + songData.get("trackName"));

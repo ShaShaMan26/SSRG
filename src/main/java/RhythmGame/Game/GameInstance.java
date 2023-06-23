@@ -49,7 +49,7 @@ public class GameInstance {
         int iconSideLength = displayDimension.height / 5;
         songLabel.setIcon(new ImageIcon(song.icon.getImage().getScaledInstance(iconSideLength, iconSideLength, Image.SCALE_DEFAULT)));
         songLabel.setBounds(0, 0, iconSideLength, displayDimension.height);
-        songLabel.setText("<html><p style=\"width:"+(int)(iconSideLength * 1.25)+"px\">" + song.name + "</p></html>");
+        songLabel.setText("<html><p style=\"width:"+(int)(iconSideLength * 1.25)+"px\">" + song.name + "<br>" + song.author + "</p></html>");
         songLabel.setVerticalAlignment(JLabel.NORTH);
         gameSpace.add(songLabel);
 
