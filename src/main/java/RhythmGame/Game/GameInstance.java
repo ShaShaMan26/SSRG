@@ -1,6 +1,7 @@
 package RhythmGame.Game;
 
 import RhythmGame.Editor.EditorInstance;
+import RhythmGame.Instance;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -28,14 +29,17 @@ public class GameInstance {
     boolean isTest;
     int startTime;
     Dimension displayDimension;
+    Instance instance;
 
-    public GameInstance(File levelFile, GameWindow gameWindow, Dimension displayDimension, boolean isTest, int startTime) throws IOException, ParseException, UnsupportedAudioFileException, LineUnavailableException {
-        this.displayDimension = displayDimension;
+    public GameInstance(Instance instance, boolean isTest, int startTime) throws IOException, ParseException, UnsupportedAudioFileException, LineUnavailableException {
+        this.instance = instance;
+
+        this.displayDimension = instance.DISPLAY_DIMENSIONS;
         this.isTest = isTest;
         this.startTime = startTime;
-        this.gameWindow = gameWindow;
+        this.gameWindow = instance.gameWindow;
 
-        this.song = new Song(levelFile);
+        this.song = new Song(instance.levelFile);
 
         gameSpace = new GameSpace(displayDimension);
         scoreDisplay = new ScoreDisplay(displayDimension);

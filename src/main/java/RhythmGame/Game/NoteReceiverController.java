@@ -23,6 +23,11 @@ public class NoteReceiverController implements KeyListener {
             case 'f' -> gameSpace.noteAisle2.setActive(true);
             case 'j' -> gameSpace.noteAisle3.setActive(true);
             case 'k' -> gameSpace.noteAisle4.setActive(true);
+            case 'r' -> {
+                gameInstance.instance.wantsToSwitchToGame = true;
+                gameInstance.instance.wantsToSwitchToMenu = false;
+                gameInstance.active = false;
+            }
         }
     }
 

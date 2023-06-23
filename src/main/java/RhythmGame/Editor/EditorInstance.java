@@ -4,7 +4,6 @@ import RhythmGame.Game.*;
 import RhythmGame.Instance;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -18,18 +17,19 @@ public class EditorInstance {
     GameWindow gameWindow;
     public EditorSpace editorSpace;
     Song song;
-    File levelFile;
     boolean active = true;
     public boolean wantsToTest = false;
     public boolean wantsToSave = false;
     public Dimension displayDimension;
+    Instance instance;
 
-    public EditorInstance(File levelFile, GameWindow gameWindow, Dimension displayDimension) throws IOException, ParseException, UnsupportedAudioFileException, LineUnavailableException {
-        this.displayDimension = displayDimension;
-        this.gameWindow = gameWindow;
+    public EditorInstance(Instance instance) throws IOException, ParseException, UnsupportedAudioFileException, LineUnavailableException {
+        this.instance = instance;
 
-        this.levelFile = levelFile;
-        this.song = new Song(levelFile);
+        this.displayDimension = instance.DISPLAY_DIMENSIONS;
+        this.gameWindow = instance.gameWindow;
+
+        this.song = new Song(instance.levelFile);
         editorSpace = new EditorSpace(this);
 
         this.gameWindow.add(editorSpace);
@@ -53,7 +53,7 @@ public class EditorInstance {
             }
         }
 
-        FileWriter fileWriter = new FileWriter(levelFile);
+        FileWriter fileWriter = new FileWriter(instance.levelFile);
         fileWriter.write("""
                 {
                 "SongData":""");
@@ -83,7 +83,7 @@ public class EditorInstance {
                 gameWindow.removeMouseListener(mouseListener);
             }
 
-            GameInstance gameInstance = new GameInstance(levelFile, gameWindow, displayDimension, true, editorSpace.editorNeedle.playbackTimestamp);
+            GameInstance gameInstance = new GameInstance(instance, true, editorSpace.editorNeedle.playbackTimestamp);
 
             editorSpace.setVisible(false);
 
