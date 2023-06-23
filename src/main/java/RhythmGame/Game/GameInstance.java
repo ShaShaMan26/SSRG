@@ -27,6 +27,7 @@ public class GameInstance {
     int score = 0;
     boolean active = true;
     boolean isTest;
+    public boolean wantToRestart = false;
     int startTime;
     Dimension displayDimension;
     Instance instance;

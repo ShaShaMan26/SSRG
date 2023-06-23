@@ -97,7 +97,9 @@ public class EditorInstance {
             this.gameWindow.addMouseListener(new EditorMouseListener(this));
             this.gameWindow.addKeyListener(new EditorActionListener(this));
 
-            wantsToTest = false;
+            if (!gameInstance.wantToRestart) {
+                wantsToTest = false;
+            }
         }
     }
 

@@ -24,9 +24,14 @@ public class NoteReceiverController implements KeyListener {
             case 'j' -> gameSpace.noteAisle3.setActive(true);
             case 'k' -> gameSpace.noteAisle4.setActive(true);
             case 'r' -> {
-                gameInstance.instance.wantsToSwitchToGame = true;
-                gameInstance.instance.wantsToSwitchToMenu = false;
-                gameInstance.active = false;
+                if (gameInstance.isTest) {
+                    gameInstance.wantToRestart = true;
+                    gameInstance.active = false;
+                } else {
+                    gameInstance.instance.wantsToSwitchToGame = true;
+                    gameInstance.instance.wantsToSwitchToMenu = false;
+                    gameInstance.active = false;
+                }
             }
         }
     }
