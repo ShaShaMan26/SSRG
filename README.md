@@ -1,5 +1,6 @@
 # Sha's Shitty Rhythm Game
 
+![](https://cdn.shashack.org/SSRG/gameplay.gif)  
 An underdeveloped four-lane, tile rhythm game made as a research project into GUI development (it's pronounced *double S R G*).
 
 ## Downloads
@@ -37,7 +38,7 @@ Launch `SSRG.jar` (again) and the game should now be running. If you wanna learn
 SSRG is a four-lane, tiled rhythm game which means that you press one of four keys in order to "hit" the "notes" of a song to the beat of the music. It's like *Piano Tiles* or *Friday Night Funkin'* 
 or whatever (I don't actually play rhythm games). I think it's best to just see it in action so check a look:  
 
-![](https://cdn.shashack.org/SSRG/gameplay.gif)
+![](https://cdn.shashack.org/SSRG/gameplay_ex.gif)
 
 This gif depicts the "game" portion of SSRG, but to get there you must first navagate...
 
@@ -45,9 +46,9 @@ This gif depicts the "game" portion of SSRG, but to get there you must first nav
 
 Upon launching `SSRG.jar` (assuming you successfully followed the Setup Guide), you will be taken to a screen that looks like this:  
 
-img  
+![](https://cdn.shashack.org/SSRG/main_menu.png)  
 
-This is the main menu (You can press `ESC` to close the game). 
+This is the main menu (you can press `ESC` at any time to close the game). 
 The left side of the screen houses a list of every level avalible to play, while the right side displays the currently selected level. You select levels by left-clicking with your mouse 
 on their names in the list of songs. Once selected you can view the song's cover art, name, author, and can either *play the level* or *edit the level* by right-clicking their respective buttons.
 Let's start with playing levels...
@@ -66,13 +67,15 @@ Depending on how accurate your timing is when hitting notes, you'll be awarded a
 the challenge of the game arises. Your job as player is to hit all notes as accurately as possible. With the max number of points for each note hit being 20, there is such thing as a *perfect preformance*
 of any given song. This is what you are to strive for.  
 
+![](https://cdn.shashack.org/SSRG/score_ex.gif)
+
 But where do these levels come from??? Well...
 
 ## The Editor
 
 The editor is where levels are made, so ***if you wanna make levels here is where you should be!!*** Here is what the editor looks like:  
 
-img  
+![](https://cdn.shashack.org/SSRG/editor.png)
 
 (Press `ESC` at any time to return to the main menu).
 
@@ -81,7 +84,7 @@ img
 The box with a grid pattern is the "editor track" and represents your level's note placements. Right-clicking on an "editor node" will toggle it on/off. Toggle it on if you want a note to appear at that 
 point in the song!  
 
-gif
+![](https://cdn.shashack.org/SSRG/editor_nodes.gif)
 
 In order to know where in the song you are placing notes, utilize the "timestamps" along the editor track (they reflect the time at which you are at in relation to the song). You can move the editor track forward
 or backward using the `arrow keys` or `WASD`. Pressing either `D` or the `right arrow key` will move the track forward, while pressing either 'A' or the 'left arrow key' will move the track backwards. It's like
@@ -92,6 +95,8 @@ scrubbing through a video!
 How far you move the track is determined by the current "scrub speed". By default the scrub speed is set to 1, meaning you'll only increment the editor track by one note. This can be
 increased by pressing either `W` or the `up arrow key`. It will be incremented by a multiple of two each time, until reaching the maximum speed of 16. The speed can be decremented in the same fassion
 by pressing either `S` or the `down arrow key`. The minimum speed is 1.
+
+![](https://cdn.shashack.org/SSRG/scrub_speed.gif)
 
 ### Audio Playback
 
@@ -110,11 +115,15 @@ Hopefully by now you can navagate the editor and start "charting" levels. But it
 In order to save your work, press that save button located at the top right of the editor track, or press `1`. After doing so, text displaying 'Saving...' will appear above the save button.
 Once saving is complete, the text will display 'Saved!' and your level's note data will be saved.
 
+![](https://cdn.shashack.org/SSRG/saving.gif)
+
 ### Testing
 
 If you'd like to test your level while working on it in the editor, right click the "test level button" in at the bottom center of the screen. This will start a game instance of your level from the point at which
 your playback is currently set. The rounding is a bit messy, so make sure the track needle is on a whole number when doing so. Once in a test instance, you play the game a usual but pressing `ESC` will
 return you to the editor.  
+
+![](https://cdn.shashack.org/SSRG/testing.gif)
 
 That's all fine and good, but how do I create new levels??
 
