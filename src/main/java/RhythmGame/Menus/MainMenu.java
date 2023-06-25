@@ -33,20 +33,21 @@ public class MainMenu extends JPanel implements ActionListener {
         int height = width / 3;
         int xCenter = instance.DISPLAY_DIMENSIONS.width / 2;
         int yCenter = instance.DISPLAY_DIMENSIONS.height / 2;
-        int yTop = instance.DISPLAY_DIMENSIONS.height / 6;
+        int yTop = instance.DISPLAY_DIMENSIONS.height / 8;
 
         JLabel songLabel = new JLabel();
         songLabel.setFont(new Font("Monospaced", Font.BOLD, instance.DISPLAY_DIMENSIONS.height / 28));
         songLabel.setForeground(Color.WHITE);
         songLabel.setHorizontalTextPosition(JLabel.CENTER);
         songLabel.setVerticalTextPosition(JLabel.BOTTOM);
-        int iconSideLength = instance.DISPLAY_DIMENSIONS.height / 3;
+        int iconSideLength = instance.DISPLAY_DIMENSIONS.height / 2;
         songLabel.setIcon(new ImageIcon(instance.song.icon.getImage().getScaledInstance(iconSideLength, iconSideLength, Image.SCALE_DEFAULT)));
         songLabel.setBounds(xCenter - (iconSideLength / 2) + (xCenter / 2), yTop - height, iconSideLength, instance.DISPLAY_DIMENSIONS.height);
         songLabel.setText("<html><p style=\"text-align: center;\">" + instance.song.name + "<br><i>" + instance.song.author + "</i></p></html>");
         songLabel.setVerticalAlignment(JLabel.NORTH);
         this.add(songLabel);
 
+        yTop += height;
         playLevelButton = new JButton();
         playLevelButton.setFont(new Font("Arial", Font.PLAIN, (int)(height / 2.5)));
         playLevelButton.setText("Play Level");

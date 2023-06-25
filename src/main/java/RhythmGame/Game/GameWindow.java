@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class GameWindow extends JFrame {
     public GameWindow(Dimension displayDimensions) {
-        this.setTitle("Rhythm Game");
+        this.setTitle("SSRG");
         this.setSize(displayDimensions);
         this.setLayout(null);
         this.setUndecorated(true);
