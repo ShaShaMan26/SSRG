@@ -37,7 +37,7 @@ Launch `SSRG.jar` (again) and the game should now be running. If you wanna learn
 SSRG is a four-lane, tiled rhythm game which means that you press one of four keys in order to "hit" the "notes" of a song to the beat of the music. It's like *Piano Tiles* or *Friday Night Funkin'* 
 or whatever (I don't actually play rhythm games). I think it's best to just see it in action so check a look:  
 
-gif here
+![](https://cdn.shashack.org/SSRG/gameplay.gif)
 
 This gif depicts the "game" portion of SSRG, but to get there you must first navagate...
 
