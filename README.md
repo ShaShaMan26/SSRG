@@ -155,7 +155,7 @@ If you haven't messed anything up, your song should now appear in game and you c
 
 # Known Issues
 
-- Testing levels in the editor can be finicky if the track needle is not on a while number.
+- Testing levels in the editor can be finicky if the track needle is not on a whole number.
 - The game does not like if you mismatch song length with the length of your music file but, like, I did it and it was fine just be careful.
 - You are not returned to the main menu after a level ends if the music file length is less than a second.
 - This game is lacking basic features like combos, leaderboards, or a results screen :P
