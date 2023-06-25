@@ -50,7 +50,7 @@ Upon launching `SSRG.jar` (assuming you successfully followed the Setup Guide), 
 
 This is the main menu (you can press `ESC` at any time to close the game). 
 The left side of the screen houses a list of every level avalible to play, while the right side displays the currently selected level. You select levels by left-clicking with your mouse 
-on their names in the list of songs. Once selected you can view the song's cover art, name, author, and can either *play the level* or *edit the level* by right-clicking their respective buttons.
+on their names in the list of songs. Once selected you can view the song's cover art, name, author, and can either *play the level* or *edit the level* by left-clicking their respective buttons.
 Let's start with playing levels...
 
 ## Once in Game
@@ -81,7 +81,7 @@ The editor is where levels are made, so ***if you wanna make levels here is wher
 
 ### Editor Track and Nodes
 
-The box with a grid pattern is the "editor track" and represents your level's note placements. Right-clicking on an "editor node" will toggle it on/off. Toggle it on if you want a note to appear at that 
+The box with a grid pattern is the "editor track" and represents your level's note placements. Left-clicking on an "editor node" will toggle it on/off. Toggle it on if you want a note to appear at that 
 point in the song!  
 
 ![](https://cdn.shashack.org/SSRG/editor_nodes.gif)
@@ -119,7 +119,7 @@ Once saving is complete, the text will display 'Saved!' and your level's note da
 
 ### Testing
 
-If you'd like to test your level while working on it in the editor, right click the "test level button" in at the bottom center of the screen. This will start a game instance of your level from the point at which
+If you'd like to test your level while working on it in the editor, left click the "test level button" in at the bottom center of the screen. This will start a game instance of your level from the point at which
 your playback is currently set. The rounding is a bit messy, so make sure the track needle is on a whole number when doing so. Once in a test instance, you play the game a usual but pressing `ESC` will
 return you to the editor.  
 
