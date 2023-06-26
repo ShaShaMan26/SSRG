@@ -120,7 +120,7 @@ Once saving is complete, the text will display 'Saved!' and your level's note da
 ### Testing
 
 If you'd like to test your level while working on it in the editor, left click the "test level button" in at the bottom center of the screen. This will start a game instance of your level from the point at which
-your playback is currently set. The rounding is a bit messy, so make sure the track needle is on a whole number when doing so. Once in a test instance, you play the game a usual but pressing `ESC` will
+your playback is currently set. The rounding is a bit messy, so make sure the track needle is on a whole number when doing so. Once in a test instance, you play the game as usual but pressing `ESC` will
 return you to the editor.  
 
 ![](https://cdn.shashack.org/SSRG/testing.gif)
