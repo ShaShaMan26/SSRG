@@ -87,7 +87,7 @@ point in the song!
 ![](https://cdn.shashack.org/SSRG/editor_nodes.gif)
 
 In order to know where in the song you are placing notes, utilize the "timestamps" along the editor track (they reflect the time at which you are at in relation to the song). You can move the editor track forward
-or backward using the `arrow keys` or `WASD`. Pressing either `D` or the `right arrow key` will move the track forward, while pressing either 'A' or the 'left arrow key' will move the track backwards. It's like
+or backward using the `arrow keys` or `WASD`. Pressing either `D` or the `right arrow key` will move the track forward, while pressing either `A` or the `left arrow key` will move the track backwards. It's like
 scrubbing through a video!
 
 ### Scrub Speed
