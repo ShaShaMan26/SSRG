@@ -15,9 +15,9 @@ You can download the game [here](https://cdn.shashack.org/SSRG/SSRG.jar) (Java i
 ### Launch `SSRG.jar`
 
 First, Launch `SSRG.jar`. It will seem like nothing has happened, but that's only because the game has **crashed**. No worries tho, it's supposed to do that<sup>TM</sup>! A folder should now have been created
-on your system that we will need to navagate to...
+on your system that we will need to navigate to...
 
-### Navatage to `AppData`
+### Navigate to `AppData`
 
 The aforementioned folder should be located in (for Windows) `C:\\Users\WHATEVER USER YOU ARE\AppData\Roaming`. Once there, find the folder named `SSRG` (if said folder is missing, repeat step one). Open the folder
 and then we can move on to...  
@@ -49,7 +49,7 @@ Upon launching `SSRG.jar` (assuming you successfully followed the Setup Guide), 
 ![](https://cdn.shashack.org/SSRG/main_menu.png)  
 
 This is the main menu (you can press `ESC` at any time to close the game). 
-The left side of the screen houses a list of every level avalible to play, while the right side displays the currently selected level. You select levels by left-clicking with your mouse 
+The left side of the screen houses a list of every level available to play, while the right side displays the currently selected level. You select levels by left-clicking with your mouse 
 on their names in the list of songs. Once selected you can view the song's cover art, name, author, and can either *play the level* or *edit the level* by left-clicking their respective buttons.
 Let's start with playing levels...
 
@@ -64,7 +64,7 @@ booted back to the main menu. While in game, you can press `ESC` to return to th
 ### Scoring/Purpose
 
 Depending on how accurate your timing is when hitting notes, you'll be awarded a point value from 1-20 which will add to your overall score for the song. This is where you get bragging rights and also where 
-the challenge of the game arises. Your job as player is to hit all notes as accurately as possible. With the max number of points for each note hit being 20, there is such thing as a *perfect preformance*
+the challenge of the game arises. Your job as player is to hit all notes as accurately as possible. With the max number of points for each note hit being 20, there is such thing as a *perfect performance*
 of any given song. This is what you are to strive for.  
 
 ![](https://cdn.shashack.org/SSRG/score_ex.gif)
@@ -93,7 +93,7 @@ scrubbing through a video!
 ### Scrub Speed
 
 How far you move the track is determined by the current "scrub speed". By default the scrub speed is set to 1, meaning you'll only increment the editor track by one note. This can be
-increased by pressing either `W` or the `up arrow key`. It will be incremented by a multiple of two each time, until reaching the maximum speed of 16. The speed can be decremented in the same fassion
+increased by pressing either `W` or the `up arrow key`. It will be incremented by a multiple of two each time, until reaching the maximum speed of 16. The speed can be decremented in the same fashion
 by pressing either `S` or the `down arrow key`. The minimum speed is 1.
 
 ![](https://cdn.shashack.org/SSRG/scrub_speed.gif)
@@ -111,7 +111,7 @@ This is a bit imprecise tho so just bear with it.
 
 ### Saving
 
-Hopefully by now you can navagate the editor and start "charting" levels. But it is important to note that ***notes placed are NOT automatically saved!!***
+Hopefully by now you can navigate the editor and start "charting" levels. But it is important to note that ***notes placed are NOT automatically saved!!***
 In order to save your work, press that save button located at the top right of the editor track, or press `1`. After doing so, text displaying 'Saving...' will appear above the save button.
 Once saving is complete, the text will display 'Saved!' and your level's note data will be saved.
 
@@ -129,7 +129,7 @@ That's all fine and good, but how do I create new levels??
 
 ## Creating New Levels
 
-Since I'm sick of this project already, you have to navagate to the `songs` folder belonging to the `SSRG` folder in your `AppData` folder to create new levels. Once there, create a new folder and name it whatever
+Since I'm sick of this project already, you have to navigate to the `songs` folder belonging to the `SSRG` folder in your `AppData` folder to create new levels. Once there, create a new folder and name it whatever
 you want to show up in the songs list. Inside of that folder needs to be three things:
 
 ### Music File
@@ -151,7 +151,7 @@ Much less simple; you need a JSON file with the following information formatted 
 
 [Here](https://cdn.shashack.org/SSRG/SongDataTemplate.json) is a template :)  
 
-If you haven't messed anything up, your song should now appear in game and you can now play and edit it till your hearts content.
+If you haven't messed anything up, your song should now appear in game and you can now play and edit it to your heart's content.
 
 # Known Issues
 
