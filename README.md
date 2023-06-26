@@ -8,7 +8,7 @@ An underdeveloped four-lane, tile rhythm game made as a research project into GU
 You can download the game [here](https://cdn.shashack.org/SSRG/SSRG.jar) (Java is required to run it).  
 [These](https://cdn.shashack.org/SSRG/shas_song_pack_1.zip) are some levels I made that you can try out.
 
-# Setup Guide (You'll need it)
+# Setup Guide (you'll need it)
 
 #### ***Ensure you have download both the [game](https://cdn.shashack.org/SSRG/SSRG.jar) and [level pack](https://cdn.shashack.org/SSRG/shas_song_pack_1.zip) before proceeding!!!***  
 
@@ -40,7 +40,7 @@ or whatever (I don't actually play rhythm games). I think it's best to just see 
 
 ![](https://cdn.shashack.org/SSRG/gameplay_ex.gif)
 
-This gif depicts the "game" portion of SSRG, but to get there you must first navagate...
+This gif depicts the "game" portion of SSRG, but to get there you must first navigate...
 
 ## Menus
 
