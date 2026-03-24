@@ -1,16 +1,16 @@
-# Sha's Shitty Rhythm Game
+# Sha's Shitty Rhythm Game **The original site files for this readme were hosted at has been taken down only necessary downlaod links have been restored**
 
 ![](https://cdn.shashack.org/SSRG/gameplay.gif)  
 An underdeveloped four-lane, tile rhythm game made as a research project into GUI development (it's pronounced *double S R G*).
 
 ## Downloads
 
-You can download the game [here](https://cdn.shashack.org/SSRG/SSRG.jar) (Java is required to run it).  
-[These](https://cdn.shashack.org/SSRG/shas_song_pack_1.zip) are some levels I made that you can try out.
+You can download the game [here](https://www.mediafire.com/file/iy3v899o3ubav92/SSRG.jar/file) ([Java](https://download.oracle.com/java/19/archive/jdk-19.0.2_windows-x64_bin.exe) is required to run it).  
+[These](https://www.mediafire.com/file/f87oqrykcbhem7y/shas_song_pack_1.zip/file) are some levels I made that you can try out.
 
 # Setup Guide (you'll need it)
 
-#### ***Ensure you have download both the [game](https://cdn.shashack.org/SSRG/SSRG.jar) and [level pack](https://cdn.shashack.org/SSRG/shas_song_pack_1.zip) before proceeding!!!***  
+#### ***Ensure you have download both the [game](https://www.mediafire.com/file/iy3v899o3ubav92/SSRG.jar/file) and [level pack](https://www.mediafire.com/file/f87oqrykcbhem7y/shas_song_pack_1.zip/file) before proceeding!!!***  
 
 ### Launch `SSRG.jar`
 
@@ -25,7 +25,7 @@ and then we can move on to...
 ### Adding Levels
 
 Upon opening the folder `SSRG` that my <s>virus</s> game created in your `AppData` folder, you should see an empty folder titled `songs`.
-Now is when you'll need to find where you downloaded the [level pack](https://cdn.shashack.org/SSRG/shas_song_pack_1.zip) that you downloaded when I told you to earlier. If you're not sloppy and know where said
+Now is when you'll need to find where you downloaded the [level pack](https://www.mediafire.com/file/f87oqrykcbhem7y/shas_song_pack_1.zip/file) that you downloaded when I told you to earlier. If you're not sloppy and know where said
 zip folder is, unzip it. Once unzipped, simply replace the `songs` folder in `SSRG` with the `songs` folder from inside the zip file. After doing so, you can now...
 
 ### Launch `SSRG.jar` (again)
