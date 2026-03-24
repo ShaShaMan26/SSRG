@@ -1,9 +1,9 @@
 # Sha's Shitty Rhythm Game
 
 ![](https://cdn.shashack.org/SSRG/gameplay.gif)  
-An underdeveloped four-lane, tile rhythm game made as a research project into GUI development (it's pronounced *double S R G*). **The original site files for this readme were hosted at has been taken down only necessary downlaod links have been restored**
+An underdeveloped four-lane, tile rhythm game made as a research project into GUI development (it's pronounced *double S R G*).
 
-## Downloads
+## Downloads (The original site that files for this readme were hosted at has been taken down, only necessary downlaod links have been restored)
 
 You can download the game [here](https://www.mediafire.com/file/iy3v899o3ubav92/SSRG.jar/file) ([Java](https://download.oracle.com/java/19/archive/jdk-19.0.2_windows-x64_bin.exe) is required to run it).  
 [These](https://www.mediafire.com/file/f87oqrykcbhem7y/shas_song_pack_1.zip/file) are some levels I made that you can try out.
