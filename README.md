@@ -1,7 +1,7 @@
-# Sha's Shitty Rhythm Game **The original site files for this readme were hosted at has been taken down only necessary downlaod links have been restored**
+# Sha's Shitty Rhythm Game
 
 ![](https://cdn.shashack.org/SSRG/gameplay.gif)  
-An underdeveloped four-lane, tile rhythm game made as a research project into GUI development (it's pronounced *double S R G*).
+An underdeveloped four-lane, tile rhythm game made as a research project into GUI development (it's pronounced *double S R G*). **The original site files for this readme were hosted at has been taken down only necessary downlaod links have been restored**
 
 ## Downloads
 
